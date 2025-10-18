@@ -11,10 +11,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
 void main() async {
   setup();
   runApp(const MyApp());
+ await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox(kFeaturedBox);
 }
