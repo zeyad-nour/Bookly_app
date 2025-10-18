@@ -1,4 +1,5 @@
 import 'package:bokly_app/Features/home/data/repos/home_repo_implemnt.dart';
+import 'package:bokly_app/Features/home/domin/entitys/book_entity.dart';
 import 'package:bokly_app/Features/home/presentation/manger/BestSeller_cubit/best_seller_cubit.dart';
 import 'package:bokly_app/Features/home/presentation/manger/Featured_Cubit/featured_books_cubit.dart';
 import 'package:bokly_app/Features/home/presentation/manger/suggestion_cubit/suggestion_cubit_cubit.dart';
@@ -9,10 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 
-void main() {
+void main() async {
   setup();
   runApp(const MyApp());
+  Hive.registerAdapter(BookEntityAdapter());
+  await Hive.openBox(kFeaturedBox);
 }
 
 class MyApp extends StatelessWidget {
